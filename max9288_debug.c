@@ -88,7 +88,7 @@
 			__func__, __LINE__, dev_name(&client->dev), ##args)
 
 /*add debug info*/
-//#define __DEBUG__
+#define __DEBUG__
 #ifdef __DEBUG__
 #define debug(fmt,...) printk("[debug_info] %s:%d" fmt "\n",__func__,__LINE__,##__VA_ARGS__)
 #else
@@ -445,9 +445,9 @@ static struct reg_val_ops MAX9288_CAB888_1v1_init_cmd[] = {
         {SENSOR_INIT_ADDR,  {0x38, 0x07}, 0x29,             0x02, i2c_write},
         {SENSOR_INIT_ADDR,  {0x38, 0x02}, 0x00,             0x02, i2c_write},
         {SENSOR_INIT_ADDR,  {0x38, 0x03}, 0x04,             0x02, i2c_write},
-        {SENSOR_INIT_ADDR,  {0x38, 0x08}, 0x05,             0x02, i2c_write},
+        {SENSOR_INIT_ADDR,  {0x38, 0x08}, 0x05,             0x02, i2c_write},//1280 0x0500
         {SENSOR_INIT_ADDR,  {0x38, 0x09}, 0x00,             0x02, i2c_write},
-        {SENSOR_INIT_ADDR,  {0x38, 0x0a}, 0x03,             0x02, i2c_write},
+        {SENSOR_INIT_ADDR,  {0x38, 0x0a}, 0x03,             0x02, i2c_write},//800 0x0320`
         {SENSOR_INIT_ADDR,  {0x38, 0x0b}, 0x20,             0x02, i2c_write},
         {SENSOR_INIT_ADDR,  {0x38, 0x0c}, 0x07,             0x02, i2c_write},
         {SENSOR_INIT_ADDR,  {0x38, 0x0d}, 0x71,             0x02, i2c_write},
@@ -2291,7 +2291,7 @@ static struct reg_val_ops MAX9288_CAB888_1v1_init_cmd[] = {
         {MAX9271_INIT_ADDR,  {0x07, 0x01}, 0x80,            0x01, i2c_write},  // DBL=1, HIBW=0, rising edge
         {MAX9271_INIT_ADDR,  {0x00, 0x00}, 0x05,            0x01, i2c_delay}, // delay 5ms
 
-        //-----------------------------------------------------------------------------------------dd
+        //-------------------------------------------------------------------
         {MAX9271_INIT_ADDR,  {0x00, 0x00}, 0x05,            0x01, i2c_delay},  // Delay 5ms
         {MAX9271_INIT_ADDR,  {0x20, 0x00}, 0x05,            0x01, i2c_write},  // xbar CbY
         {MAX9271_INIT_ADDR,  {0x21, 0x00}, 0x06,            0x01, i2c_write},
@@ -2328,43 +2328,7 @@ static struct reg_val_ops MAX9288_CAB888_1v1_init_cmd[] = {
         {MAX9271_INIT_ADDR,  {0x3f, 0x00}, 0x0e,            0x01, i2c_write},
         {MAX9271_INIT_ADDR,  {0x40, 0x00}, 0x0f,            0x01, i2c_write},
         {MAX9271_INIT_ADDR,  {0x41, 0x00}, 0x0e,            0x01, i2c_write},
-//-------//-----------------------------------------------------------------------------------------dd
-        {MAX9271_INIT_ADDR,  {0x20, 0x00}, 0x05,            0x01, i2c_write},  // xbar CbY
-        {MAX9271_INIT_ADDR,  {0x21, 0x00}, 0x06,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x22, 0x00}, 0x07,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x23, 0x00}, 0x08,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x24, 0x00}, 0x09,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x25, 0x00}, 0x40,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x26, 0x00}, 0x40,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x27, 0x00}, 0x0e,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x28, 0x00}, 0x0f,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x29, 0x00}, 0x0e,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x2a, 0x00}, 0x40,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x2b, 0x00}, 0x40,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x2c, 0x00}, 0x40,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x2d, 0x00}, 0x40,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x2e, 0x00}, 0x40,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x2f, 0x00}, 0x40,            0x01, i2c_write},
-
-        {MAX9271_INIT_ADDR,  {0x30, 0x00}, 0x12,            0x01, i2c_write},  // xbar CrY
-        {MAX9271_INIT_ADDR,  {0x31, 0x00}, 0x13,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x32, 0x00}, 0x14,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x33, 0x00}, 0x15,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x34, 0x00}, 0x16,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x35, 0x00}, 0x17,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x36, 0x00}, 0x18,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x37, 0x00}, 0x19,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x38, 0x00}, 0x02,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x39, 0x00}, 0x03,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x3a, 0x00}, 0x04,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x3b, 0x00}, 0x40,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x3c, 0x00}, 0x40,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x3d, 0x00}, 0x40,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x3e, 0x00}, 0x40,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x3f, 0x00}, 0x0e,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x40, 0x00}, 0x0f,            0x01, i2c_write},
-        {MAX9271_INIT_ADDR,  {0x41, 0x00}, 0x0e,            0x01, i2c_write},
-//-------------------------------------------------------------------------------------
+        //--------------------------------------------------------------------
         {MAX9271_INIT_ADDR,  {0x43, 0x00}, 0x01,            0x01, i2c_write},  // #disable vsync re-gen
 
         {MAX9271_INIT_ADDR,  {0x44, 0x00}, 0x30,            0x01, i2c_write},  // vsync delay; 30 d5 90
@@ -2381,18 +2345,11 @@ static struct reg_val_ops MAX9288_CAB888_1v1_init_cmd[] = {
 
         {MAX9271_INIT_ADDR,  {0x43, 0x00}, 0x21,            0x01, i2c_write},  // enable vsync re-gen
         {MAX9271_INIT_ADDR,  {0x4d, 0x00}, 0xc8,            0x01, i2c_write},  // HIMM, Coax, Inv Vsync
-        {MAX9271_INIT_ADDR,  {0x67, 0x00}, 0xe2,            0x01, i2c_write},  // Auto link, Force align (e4 align at HS rising edge)
+        {MAX9271_INIT_ADDR,  {0x67, 0x00}, 0xc4,            0x01, i2c_write},  // Align at each rising edge of HS
 
         {MAX9271_INIT_ADDR,  {0x04, 0x00}, 0x83,            0x01, i2c_write},  // enable Serial Interface
 
         {MAX9271_INIT_ADDR,  {0x00, 0x00}, 0x05,            0x01, i2c_delay},  // Delay 5ms
-
-
-	{OV490_CH0_ADDR,    {0xFF, 0xFD}, 0x80,             0x02, i2c_write},
-	{OV490_CH0_ADDR,    {0xFF, 0xFE}, 0x19,             0x02, i2c_write},
-	{OV490_CH0_ADDR,    {0x50, 0x00}, 0x03,             0x02, i2c_write},
-	{OV490_CH0_ADDR,    {0xFF, 0xFE}, 0x80,             0x02, i2c_write},
-	{OV490_CH0_ADDR,    {0x00, 0xC0}, 0xD6,             0x02, i2c_write},
 };
 
 struct max9288_datafmt {
@@ -2776,13 +2733,10 @@ static int max9288_camera_init(struct i2c_client *client)
 {
 	int ret = 0;
 	u8 max9288_id_val = 0;
-    u8 link_reg_val = 0;
     u8 lock_reg_val = 0;
     int read_cnt = 0;
     u32 link_cnt = 0;
     struct max9288 *priv = NULL;
-	unsigned long skip_len = 0;
-	//u64 delay = 10000;
 
     max9288_info("MAX9288!");
     debug("--->>>in\n");
@@ -2796,22 +2750,17 @@ static int max9288_camera_init(struct i2c_client *client)
 			max9288_err("read max9288 ID time out");
 			return -EIO;
 		}
-
-		//udelay(delay);
     }
 
-    link_reg_val = 1;
     link_cnt = 1;
-
 	priv = to_max9288(client);
 	priv->link = link_cnt;
 
 	/*init max9288 command*/
 	if (link_cnt == 1U) {
-		skip_len = 5;
 		ret = max9288_write_array(client,
 			MAX9288_CAB888_1v1_init_cmd,
-			ARRAY_SIZE(MAX9288_CAB888_1v1_init_cmd) - skip_len);
+			ARRAY_SIZE(MAX9288_CAB888_1v1_init_cmd));
 	} else if (link_cnt == 4U) {
 		ret = max9288_cab888_4v4_init(client);
 		if (ret < 0)
@@ -3104,8 +3053,8 @@ static ssize_t addr_store(struct device *dev, struct device_attribute *attr, con
 static ssize_t register_show_ov10635(struct device *dev, struct device_attribute *attr, char *buf)
 {
     i2c_read(sensor_client,SENSOR_INIT_ADDR, addr,2,&data);
-    debug("luozh: addr=0x%02x%02x, data=0x%x\n", addr[0],addr[1], data);
-    return sprintf(buf, "%x\n", data);
+    debug("luozh: addr=0x%02x%02x, data=0x%02x\n", addr[0],addr[1], data);
+    return sprintf(buf, "0x%02x\n", data);
 }
 
 static ssize_t register_store_ov10635(struct device *dev, struct device_attribute *attr, const char *buf, size_t count)
@@ -3113,7 +3062,7 @@ static ssize_t register_store_ov10635(struct device *dev, struct device_attribut
     data = (unsigned short)simple_strtoul(buf, NULL, 16);
     i2c_write(sensor_client,SENSOR_INIT_ADDR,addr, 2, &data);
 
-    debug("luozh: addr=0x%02x%02x, data=0x%x\n", addr[0],addr[1], data);
+    debug("luozh: addr=0x%02x%02x, data=0x%02x\n", addr[0],addr[1], data);
     return count;
 }
 //for max9288
@@ -3121,8 +3070,8 @@ static ssize_t register_show_max9288(struct device *dev, struct device_attribute
 {
 	addr[0] = addr[1];
     i2c_read(sensor_client,MAX9288_ADDR, addr,1,&data);
-    debug("luozh: addr=0x%02x, data=0x%x\n", addr[0], data);
-    return sprintf(buf, "%x\n", data);
+    debug("luozh: addr=0x%02x, data=0x%02x\n", addr[0], data);
+    return sprintf(buf, "0x%02x\n", data);
 }
 
 static ssize_t register_store_max9288(struct device *dev, struct device_attribute *attr, const char *buf, size_t count)
@@ -3131,7 +3080,7 @@ static ssize_t register_store_max9288(struct device *dev, struct device_attribut
     data = (unsigned short)simple_strtoul(buf, NULL, 16);
     i2c_write(sensor_client,MAX9288_ADDR,addr, 1, &data);
 
-    debug("luozh: addr=0x%02x, data=0x%x\n", addr[0], data);
+    debug("luozh: addr=0x%02x, data=0x%02x\n", addr[0], data);
     return count;
 }
 //for max96705
@@ -3139,8 +3088,8 @@ static ssize_t register_show_max96705(struct device *dev, struct device_attribut
 {
 	addr[0] = addr[1];
     i2c_read(sensor_client,MAX9271_INIT_ADDR, addr,1,&data);
-    debug("luozh: addr=0x%02x, data=0x%x\n", addr[0], data);
-    return sprintf(buf, "%x\n", data);
+    debug("luozh: addr=0x%02x, data=0x%02x\n", addr[0], data);
+    return sprintf(buf, "0x%02x\n", data);
 }
 
 static ssize_t register_store_max96705(struct device *dev, struct device_attribute *attr, const char *buf, size_t count)
@@ -3149,46 +3098,46 @@ static ssize_t register_store_max96705(struct device *dev, struct device_attribu
     data = (unsigned short)simple_strtoul(buf, NULL, 16);
     i2c_write(sensor_client,MAX9271_INIT_ADDR,addr, 1, &data);
 
-    debug("luozh: addr=0x%02x, data=0x%x\n", addr[0], data);
+    debug("luozh: addr=0x%02x, data=0x%02x\n", addr[0], data);
     return count;
 }
-//for max20088
-#define  MAX20088_ADDR  0x52//0x29
-static ssize_t register_show_max20088(struct device *dev, struct device_attribute *attr, char *buf)
+//for max20088a
+#define  MAX20088A_ADDR  0x52//0x29
+static ssize_t register_show_max20088a(struct device *dev, struct device_attribute *attr, char *buf)
 {
 	addr[0] = addr[1];
-    i2c_read(sensor_client,MAX20088_ADDR, addr,1,&data);
-    debug("luozh: addr=0x%02x, data=0x%x\n", addr[0], data);
+    i2c_read(sensor_client,MAX20088A_ADDR, addr,1,&data);
+    debug("luozh: addr=0x%02x, data=0x%02x\n", addr[0], data);
     return sprintf(buf, "0x%02x\n", data);
 }
 
-static ssize_t register_store_max20088(struct device *dev, struct device_attribute *attr, const char *buf, size_t count)
+static ssize_t register_store_max20088a(struct device *dev, struct device_attribute *attr, const char *buf, size_t count)
 {
 	addr[0] = addr[1];
     data = (unsigned short)simple_strtoul(buf, NULL, 16);
-    i2c_write(sensor_client,MAX20088_ADDR,addr, 1, &data);
+    i2c_write(sensor_client,MAX20088A_ADDR,addr, 1, &data);
 
-    debug("luozh: addr=0x%02x, data=0x%x\n", addr[0], data);
+    debug("luozh: addr=0x%02x, data=0x%02x\n", addr[0], data);
     return count;
 }
 
 //for max20086
-#define MAX20086_ADDR 0x50
-ssize_t register_show_max20086(struct device *dev, struct device_attribute *attr, char *buf)
+#define MAX20086A_ADDR 0x50
+ssize_t register_show_max20086a(struct device *dev, struct device_attribute *attr, char *buf)
 {
 	addr[0] = addr[1];
-    i2c_read(sensor_client,MAX20086_ADDR, addr,1,&data);
+    i2c_read(sensor_client,MAX20086A_ADDR, addr,1,&data);
     debug("luozh: addr=0x%02x, data=0x%x\n", addr[0], data);
     return sprintf(buf, "0x%02x\n", data);
 }
 
-ssize_t register_store_max20086(struct device *dev, struct device_attribute *attr, const char *buf, size_t count)
+ssize_t register_store_max20086A(struct device *dev, struct device_attribute *attr, const char *buf, size_t count)
 {
 	addr[0] = addr[1];
     data = (unsigned short)simple_strtoul(buf, NULL, 16);
-    i2c_write(sensor_client,MAX20086_ADDR,addr, 1, &data);
+    i2c_write(sensor_client,MAX20086A_ADDR,addr, 1, &data);
 
-    debug("luozh: addr=0x%02x, data=0x%x\n", addr[0], data);
+    debug("luozh: addr=0x%02x, data=0x%02x\n", addr[0], data);
     return count;
 }
 
@@ -3197,8 +3146,8 @@ static DEVICE_ATTR(sensor_register_max9288, 0644, register_show_max9288, registe
 static DEVICE_ATTR(sensor_register_max96705, 0644, register_show_max96705, register_store_max96705);
 static DEVICE_ATTR(register_addr, 0644, addr_show, addr_store);
 //-------------------------------------------------------------
-static DEVICE_ATTR(linux_register_max20088, 0644, register_show_max20088, register_store_max20088);
-//static DEVICE_ATTR(linux_register_max20086, 0644, register_show_max20086, register_store_max20086);
+static DEVICE_ATTR(linux_register_max20088a, 0644, register_show_max20088a, register_store_max20088a);
+//static DEVICE_ATTR(linux_register_max20086a, 0644, register_show_max20086, register_store_max20086a);
 
 #endif
 static int max9288_probe(struct i2c_client *client,
@@ -3266,12 +3215,12 @@ static int max9288_probe(struct i2c_client *client,
         debug("luozh: register_addr probe error....\n");
     }
     //for max20088 and max20086
-    ret = device_create_file(&client->dev, &dev_attr_linux_register_max20088);
+    ret = device_create_file(&client->dev, &dev_attr_linux_register_max20088a);
     if (ret) {
         debug("luozh: register_addr probe error....\n");
     }
     /*
-    ret = device_create_file(&client->dev, &dev_attr_linux_register_max20086);
+    ret = device_create_file(&client->dev, &dev_attr_linux_register_max20086a);
     if (ret) {
         debug("luozh: register_addr probe error....\n");
     }*/
